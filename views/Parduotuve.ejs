@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remgeta - Parduotuvė</title>
+    <%- include('Scripts.ejs') %>
+</head>
+<body>
+<!--////////////////////////////////////////////////////////////////-->
+
+<%- include('RemgetaMenu.ejs') %>
+
+<div class="container linija">
+    <div class="row">
+        <div class="col-md-12">
+
+            <span class="page-title">PARDUOTUVĖ</span>
+            <p class="menuTitle"> <a>Parduotuvė</a></p>
+        </div>
+    </div>
+    <div class="shop-box">
+        <div class="row">
+            <% for(var i = 0; i < Category.length; i++) { %>
+                <div class="col-lg-3 col-6 text-center">
+                    <a class="select" href="parduotuve/<%= Category[i].Name %>">
+                        <div class="box category">
+                            <img src="/assets/images/test.jpg" alt="dummyimage" width="120" height="120">
+                            <div class="box-title">
+                                <h5><%= Category[i].Label %></h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <hr>
+
+</div>
+<!--////////////////////////////////////////////////////////////////-->
+</body>
+</html>
