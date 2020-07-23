@@ -2,6 +2,5 @@
 
 ## Installiation
 
-Push/Pull testing
 
 ## Running
