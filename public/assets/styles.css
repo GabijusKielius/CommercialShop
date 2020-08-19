@@ -62,11 +62,12 @@ html, body {
 body {
     overflow-y: scroll;
     /*background: url(https://wallpaperaccess.com/full/1289006.jpg); OLD BACKGROUND */
-    background: url("images/background.gif");
+    /*background: url("images/background.gif");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: auto;
-    background-position: center;
+    background-position: center; */
+
 }
 
 .active, .dropdown-item-active {
@@ -107,7 +108,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin-top: 162px;
+    margin-top: 55px;
     margin-bottom: 55px;
     background-color: #f1f1f1;
 }
@@ -156,6 +157,7 @@ body {
 
 .text-background {
     padding: 10px;
+    margin: 10px;
     background-color: #ffffff;
     border-radius: 20px; /* Makes background rounded */
 }
@@ -257,10 +259,14 @@ h3{
     padding-top: 10px;
 }
 .menuTitle a{
-    color: black !important;
+    color: #3399cc !important;
 }
-.menuTitleItem {
-    text-decoration: underline !important;
+/*.menuTitleItem {*/
+/*    text-decoration: underline !important;*/
+/*}*/
+.productInfo {
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 

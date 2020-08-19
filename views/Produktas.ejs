@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Remgeta - <%= product.Label %> <%= product.Description %></title>
+    <title>Gabijus - <%= product.Label %> <%= product.Description %></title>
     <%- include('Scripts.ejs') %>
 </head>
 <body>
@@ -14,16 +14,28 @@
     <div class="row">
         <div class="col-md-12">
             <span class="page-title">PARDUOTUVĖ</span>
-            <p class="menuTitle"> <a class="menuTitleItem" href="/parduotuve">Parduotuvė</a> / <a class="menuTitleItem" href="../../<%= category.Name %>"><%= category.Label%></a> / <a class="menuTitleItem" href="../<%= subcategory.Name%>"><%= subcategory.Label%></a> / <%= product.Label%></p>
-            <div class="text-background">
-                <ul class="tekstas">
-                    <li><%= product.Label %></li>
-                    <li><%= product.Description %></li>
-                    <li class="lastText"><%= product.Price %> Eur</li>
-                </ul>
+            <p class="menuTitle"><a class="menuTitleItem" href="/parduotuve">Parduotuvė</a><a> > </a><a class="menuTitleItem" href="../../<%= category.Name %>"><%= category.Label %></a><a> > </a><a class="menuTitleItem" href="../<%= subcategory.Name %>"><%= subcategory.Label %></a><a> > </a><a><%= product.Label %></a></p>
+        </div>
+    </div>
+    <div class="shop-box">
+        <div class="row text-background">
+            <div class="col-lg-3 col-12 text-center">
+                <div class="box product">
+                    <img src="https://via.placeholder.com/300" alt="dummyimage" width="180" height="180">
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 productInfo">
+                <div class="item-title">
+                    <h4><%= product.Label %> - <%= product.Description %></h4>
+                </div>
+                <div class="item-id">
+                    <span><%= product.Price %> Eur</span>
+                </div>
             </div>
         </div>
     </div>
+
+
     <hr>
 </div>
 <!--////////////////////////////////////////////////////////////////-->

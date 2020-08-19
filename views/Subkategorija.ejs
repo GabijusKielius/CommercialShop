@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Remgeta - <%= category.Label %></title>
+    <title>Gabijus - <%= category.Label %></title>
     <%- include('Scripts.ejs') %>
 </head>
 <body>
@@ -15,8 +15,7 @@
         <div class="col-md-12">
 
             <span class="page-title">PARDUOTUVĖ</span>
-            <p class="menuTitle"><a class="menuTitleItem" href="/parduotuve">Parduotuvė</a> /
-                <a> <%= category.Label %></a></p>
+            <p class="menuTitle"><a class="menuTitleItem" href="/parduotuve">Parduotuvė</a><a> > </a><a> <%= category.Label %></a></p>
         </div>
     </div>
     <% if(subcategories.length == 0) { %>

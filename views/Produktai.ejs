@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Remgeta - <%= subcategory.Label%></title>
+    <title>Gabijus - <%= subcategory.Label%></title>
     <%- include('Scripts.ejs') %>
 </head>
 <body>
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <span class="page-title">PARDUOTUVĖ</span>
-            <p class="menuTitle"> <a class="menuTitleItem" href="/parduotuve">Parduotuvė</a> / <a class="menuTitleItem" href="../<%= category.Name %>"><%= category.Label%></a> / <%= subcategory.Label%></p>
+            <p class="menuTitle"> <a class="menuTitleItem" href="/parduotuve">Parduotuvė</a><a> > </a><a class="menuTitleItem" href="../<%= category.Name %>"><%= category.Label%></a><a> > </a><a><%= subcategory.Label%></a></p>
         </div>
     </div>
     <% if(products.length == 0) { %>
@@ -31,13 +31,13 @@
                     <a class="select" href="<%= subcategory.Name %>/<%= products[i].Name %>">
                         <div class="box product">
                             <img src="https://via.placeholder.com/300" alt="dummyimage" width="120" height="120">
-                            <div class="box-title productInfo">
-                                <h4><%= products[i].Label %></h4>
+                            <div class="box-title">
+                                <h5><%= products[i].Label %></h5>
                             </div>
-                            <div class="box-text productInfo">
+                            <div class="box-text">
                                 <span><%= products[i].Description %></span>
                             </div>
-                            <div class="box-text productInfo">
+                            <div class="box-text">
                                 <span><%= products[i].Price %> Eur</span>
                             </div>
                         </div>
