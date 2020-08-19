@@ -95,8 +95,8 @@ body {
 
 .header {
     width: 100%; /* Full width */
-    height: 105px;
-    max-height: 105px;
+    height: 55px;
+    max-height: 55px;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     z-index: 100;
@@ -111,6 +111,7 @@ body {
     margin-top: 55px;
     margin-bottom: 55px;
     background-color: #f1f1f1;
+    font-family: 'Roboto', sans-serif; !important
 }
 
 .page-title {
@@ -181,7 +182,7 @@ body {
     display: inline-block;
 }
 
-.fa {
+.medialink {
     padding: 7px;
     font-size: 30px;
     width: 30px;
@@ -267,6 +268,44 @@ h3{
 .productInfo {
     margin-top: 20px;
     margin-left: 20px;
+
 }
-
-
+.item-title {
+    font-size: 25pt;
+    text-transform: uppercase;
+}
+.item-id {
+    font-size: 9pt;
+    text-transform: uppercase;
+}
+.item-id, .item-price{
+    color: #999;
+    margin-bottom: 25px;
+}
+.item-price {
+    padding: 6px 16px;
+    background-color: rgba(238,28,37,0.05);
+    float: left;
+}
+.item-price-number {
+    color: #ee1c25;
+    font-size: 16pt;
+}
+.item-title, .item-price {
+    font-weight: bold; !important
+}
+.input-group{
+    clear: both;
+    width: 180px;
+    margin-bottom: 25px;
+}
+.btn-minus {
+    margin-right: 8px;
+}
+.btn-plus {
+    margin-left: 8px;
+}
+.shopping-cart-button {
+    text-transform: uppercase;
+    padding: 15px;
+}
