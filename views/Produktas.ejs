@@ -24,12 +24,12 @@
     </div>
     <div class="shop-box">
         <div class="row text-background">
-            <div class="col-lg-4 col-12 text-center">
+            <div class="col-lg-4 col-12 text-center removeFlex">
                 <div class="box">
                     <img src="https://via.placeholder.com/300" alt="dummyimage" width="250" height="250">
                 </div>
             </div>
-            <div class="col-lg-7 col-12 productInfo">
+            <div class="col-lg-4 col-12 productInfo removeFlex">
                 <div class="item-title">
                     <span><%= product.Label %> - <%= product.Description %></span>
                 </div>
@@ -40,27 +40,35 @@
                     <span class="item-price-number"><%= product.Price %> €</span>
                     <span class="item-price-unit">/ vnt.</span>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-btn btn-minus">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field="">
-                            <span class="fa fa-minus" aria-hidden="true"></span>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="input-number form-control text-center" value="1" min="1" max="1000">
-                    <span class="input-group-btn btn-plus">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                <div class="order-box">
+                    <div class="input-group">
+                        <span class="input-group-btn btn-minus">
+                            <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+                                    data-type="minus"
+                                    data-field="">
+                                <span class="fa fa-minus" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="input-number form-control text-center"
+                               value="1" min="1" max="1000">
+                        <span class="input-group-btn btn-plus">
+                            <button type="button" class="quantity-right-plus btn btn-success btn-number"
+                                    data-type="plus"
+                                    data-field="">
                             <span class="fa fa-plus"></span>
-                        </button>
-                    </span>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="shopping-cart-button">
+                        <button class="btn btn-danger fa fa-shopping-cart"> Įdėti į krepšelį</button>
+                    </div>
                 </div>
-                <button class="shopping-cart-button btn btn-danger fa fa-shopping-cart"> Įdėti į krepšelį</button>
             </div>
         </div>
     </div>
-
-
     <hr>
 </div>
 <!--////////////////////////////////////////////////////////////////-->
+<%- include('Footer.ejs')%>
 </body>
 </html>

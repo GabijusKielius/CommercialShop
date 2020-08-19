@@ -123,9 +123,6 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
 app.get('/', (req, res, next) => {
     res.render('index.ejs')
 })
-app.get('/apiemus', (req, res) => {
-    res.render('Apiemus.ejs')
-})
 app.get('/paslaugos/priedugamyba', (req, res) => {
     res.render('PrieduGamyba.ejs')
 })
@@ -143,6 +140,9 @@ app.get('/paslaugos/tekinimasirfrezavimas', (req, res) => {
 })
 app.get('/paslaugos/suvirinimas', (req, res) => {
     res.render('Suvirinimas.ejs')
+})
+app.get('/info/apie', (req, res) => {
+    res.render('Apiemus.ejs')
 })
 app.get('/info/prekiuuzsakymas', (req, res) => {
     res.render('PrekiuUzsakymas.ejs')

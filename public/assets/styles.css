@@ -1,8 +1,10 @@
+/* NAVBAR CSS */
+.navbar {
+    z-index: 9001;
+}
 .nav-item {
     margin-left: 3px;
 }
-
-
 .navbar .dropdown-toggle, .navbar .dropdown-menu a {
     cursor: pointer;
 }
@@ -18,7 +20,17 @@
     text-decoration: none;
     background-color: #dedede;
 }
+.active, .dropdown-item-active {
+    background: #ff9400;
+}
+.active {
+    border-radius: 10px;
+}
+.dropdown-item a {
+    color: grey;
+}
 
+/* WIDESCREEN / PHONE CSS */
 @media (min-width: 767px) {
     .navbar .dropdown-toggle:not(.nav-link)::after {
         display: inline-block;
@@ -70,28 +82,6 @@ body {
 
 }
 
-.active, .dropdown-item-active {
-    background: #ff9400;
-
-}
-
-.active {
-    border-radius: 10px;
-}
-
-.dropdown-item a {
-    color: grey;
-}
-
-.top-container {
-    background-color: #f1f1f1;
-    padding: 5px;
-    text-align: center;
-}
-
-.navbar {
-    z-index: 9001;
-}
 
 .header {
     width: 100%; /* Full width */
@@ -100,7 +90,6 @@ body {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     z-index: 100;
-
 }
 
 .container {
@@ -108,8 +97,8 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin-top: 55px;
-    margin-bottom: 55px;
+    margin-top: 75px;
+    margin-bottom: 20px;
     background-color: #f1f1f1;
     font-family: 'Roboto', sans-serif; !important
 }
@@ -123,6 +112,7 @@ body {
     display: table;
     margin-top: 20px;
     margin-bottom: 50px;
+    font-weight: bold;
 }
 
 .page-title:after {
@@ -135,9 +125,7 @@ body {
 }
 
 .linija {
-    border-right-style: solid;
-    border-left-style: solid;
-    border-color: #696969;
+    border: solid 1px #e6e6e6
 }
 
 .smallerTitle, .menuTitle{
@@ -148,14 +136,6 @@ body {
     color: #ff9400;
     font-size: 16px;
 }
-
-.fixed-bottom {
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: #212529;
-}
-
 .text-background {
     padding: 10px;
     margin: 10px;
@@ -176,6 +156,17 @@ body {
 }
 
 /*Footer Link CSS*/
+.footer-main {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #212529;
+}
+.footer-main footer {
+    padding-top: 17px;
+}
 .footer-links li, .footerTitle {
     margin-bottom: -10px;
     margin-top: -10px;
@@ -259,16 +250,19 @@ h3{
 .box-title {
     padding-top: 10px;
 }
-.menuTitle a{
-    color: #3399cc !important;
+.menuTitle {
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
-/*.menuTitleItem {*/
-/*    text-decoration: underline !important;*/
-/*}*/
+.menuTitle a{
+    color: #3399cc;
+}
 .productInfo {
-    margin-top: 20px;
-    margin-left: 20px;
-
+    margin: 15px 5px 0px 5px;
+}
+.removeFlex {
+    flex: auto;
 }
 .item-title {
     font-size: 25pt;
@@ -292,12 +286,11 @@ h3{
     font-size: 16pt;
 }
 .item-title, .item-price {
-    font-weight: bold; !important
+    font-weight: bold;
 }
 .input-group{
-    clear: both;
-    width: 180px;
-    margin-bottom: 25px;
+    width: 200px;
+    padding: 25px 25px 15px 25px;
 }
 .btn-minus {
     margin-right: 8px;
@@ -306,6 +299,13 @@ h3{
     margin-left: 8px;
 }
 .shopping-cart-button {
+    padding: 10px 20px 20px 20px;
+}
+.shopping-cart-button button{
     text-transform: uppercase;
-    padding: 15px;
+    height: 40px;
+}
+.order-box {
+    clear: both;
+    background: #f6f6f6;
 }
