@@ -26,9 +26,7 @@
 
                 <% for(var i = 0; i < tractors.length; i++) { %>
                     <li class="tractor">
-
                         <span><%= tractors[i].model %></span>:
-
                         <span><%= tractors[i].type %></span>
                     </li>
                 <% } %>
@@ -47,7 +45,17 @@
             </div>
 
             <div id="message"></div>
-
+            <br><br><br>
+            <form action="/upload/photo" enctype="multipart/form-data" method="POST">
+                <input type="text" id="SubCategoryID" placeholder="SubCategoryID" value="" name="SubCategoryID" required>
+                <input type="text" id="Name" placeholder="Name" value="" name="Name" required>
+                <input type="text" id="Label" placeholder="Label" value="" name="Label" required>
+                <input type="text" id="Description" placeholder="Description" value="" name="Description" required>
+                <input type="text" id="Price" placeholder="Price" value="" name="Price" required>
+                <input type="hidden" id="PhotoID" value="<%= Date.now() %>" name="PhotoID">
+                <input type="file" id="myImage" name="myImage" value="" required>
+                <input type="submit" value="Upload product"/>
+            </form>
 
             <hr>
         </div>

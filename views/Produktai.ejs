@@ -10,13 +10,11 @@
 
 <%- include('RemgetaMenu.ejs') %>
 
-<div class="container linija">
-    <div class="row">
+<div class="container">
         <div class="col-md-12">
             <span class="page-title">PARDUOTUVĖ</span>
             <p class="menuTitle"> <a class="menuTitleItem" href="/parduotuve">Parduotuvė</a><a> > </a><a class="menuTitleItem" href="../<%= category.Name %>"><%= category.Label%></a><a> > </a><a><%= subcategory.Label%></a></p>
         </div>
-    </div>
     <% if(products.length == 0) { %>
         <div class="text-background">
             <ul class="tekstas">

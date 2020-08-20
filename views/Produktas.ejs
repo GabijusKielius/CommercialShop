@@ -12,21 +12,24 @@
 <%- include('RemgetaMenu.ejs') %>
 
 
-<div class="container linija">
-    <div class="row">
-        <div class="col-md-12">
-            <span class="page-title">PARDUOTUVĖ</span>
-            <p class="menuTitle"><a class="menuTitleItem" href="/parduotuve">Parduotuvė</a><a> > </a><a
-                        class="menuTitleItem" href="../../<%= category.Name %>"><%= category.Label %></a><a> > </a><a
-                        class="menuTitleItem" href="../<%= subcategory.Name %>"><%= subcategory.Label %></a><a>
-                    > </a><a><%= product.Label %></a></p>
-        </div>
+<div class="container">
+    <div class="col-md-12">
+        <span class="page-title">PARDUOTUVĖ</span>
+        <p class="menuTitle"><a class="menuTitleItem" href="/parduotuve">Parduotuvė</a><a> > </a><a
+                    class="menuTitleItem" href="../../<%= category.Name %>"><%= category.Label %></a><a> > </a><a
+                    class="menuTitleItem" href="../<%= subcategory.Name %>"><%= subcategory.Label %></a><a>
+                > </a><a><%= product.Label %></a></p>
     </div>
     <div class="shop-box">
         <div class="row text-background">
             <div class="col-lg-4 col-12 text-center removeFlex">
                 <div class="box">
-                    <img src="https://via.placeholder.com/300" alt="dummyimage" width="250" height="250">
+                    <% console.log(product.PhotoID) %>
+                    <% if(product.PhotoID != undefined) { %>
+                        <img src="<%='/assets/images/' + product.PhotoID + '.jpg'%>" alt="dummyimage" width="250" height="250">
+                    <% } else { %>
+                            <img src="https://via.placeholder.com/300" alt="dummyimage" width="250" height="250">
+                    <% } %>
                 </div>
             </div>
             <div class="col-lg-4 col-12 productInfo removeFlex">
@@ -69,6 +72,6 @@
     <hr>
 </div>
 <!--////////////////////////////////////////////////////////////////-->
-<%- include('Footer.ejs')%>
+<%- include('Footer.ejs') %>
 </body>
 </html>

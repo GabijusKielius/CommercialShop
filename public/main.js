@@ -1,9 +1,14 @@
 // main.js
 
+
+
 window.addEventListener("DOMContentLoaded", () => {
     const updateButton = document.querySelector('#update-button')
     const deleteButton = document.querySelector('#delete-button')
     const messageDiv = document.querySelector('#message')
+
+
+
 
     updateButton.addEventListener('click', _ => {
         fetch('/tractors', {
@@ -44,4 +49,6 @@ window.addEventListener("DOMContentLoaded", () => {
             .catch(console.error)
     })
 })
+
+
 

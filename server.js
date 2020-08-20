@@ -5,13 +5,29 @@ const connectionString = 'mongodb+srv://GabiDB:es96301p@cluster0-gdqej.mongodb.n
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 const multer = require('multer')
+const path = require('path');
+const fs = require('fs');
+
+// Multer stuff
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/assets/images')
+    },
+    filename: function (req, file, cb) {
+        cb(null, req.body.PhotoID + path.extname(file.originalname));
+    }
+})
+var upload = multer({
+    storage: storage
+})
+// Multer stuff ends
 
 app.listen(3000, function () {
     console.log('listening on 3000')
 })
 
 // Database Connection and Handlers
-MongoClient.connect(connectionString, {useUnifiedTopology: true})
+MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser: true})
     .then(client => {
         console.log('Connected to Database')
         const db = client.db('Remgeta-DB')
@@ -33,15 +49,15 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
                 .catch(error => console.error(error))
         })
 
-        app.get('/parduotuve/:categoryName', async (req,res) => {
+        app.get('/parduotuve/:categoryName', async (req, res) => {
 
             const category = await db.collection('Category').findOne({Name: req.params.categoryName})
             const subcategories = await db.collection('Subcategory').find({CategoryID: category._id.toString()}).toArray()
 
-            res.render('Subkategorija.ejs', {category : category, subcategories: subcategories})
+            res.render('Subkategorija.ejs', {category: category, subcategories: subcategories})
         })
 
-        app.get('/parduotuve/:categoryName/:subCategoryName', async (req,res) => {
+        app.get('/parduotuve/:categoryName/:subCategoryName', async (req, res) => {
 
             const category = await db.collection('Category').findOne({Name: req.params.categoryName})
             const subcategory = await db.collection('Subcategory').findOne({Name: req.params.subCategoryName})
@@ -49,14 +65,26 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
             res.render('Produktai.ejs', {products: categoryItem, category: category, subcategory: subcategory})
         })
 
-        app.get('/parduotuve/:categoryName/:subCategoryName/:productName', async (req,res) => {
+        app.post('/parduotuve/:categoryName/:subCategoryName/:productName/image', async (req, res) => {
+            //Takes the image from the request object (req)
+            //Generates a random UNIQUE name for the image (use uuid or smth)
+            //Saves that image in the public folder for access
+            //Saves the image's path in the Database as an array item
+        })
+
+        app.get('/parduotuve/:categoryName/:subCategoryName/:productName', async (req, res) => {
 
             const category = await db.collection('Category').findOne({Name: req.params.categoryName})
             const subcategory = await db.collection('Subcategory').findOne({Name: req.params.subCategoryName})
             const categoryItem = await db.collection('Product').findOne({Name: req.params.productName})
-            res.render('Produktas.ejs', {product: categoryItem, category: category, subcategory: subcategory})
+
+            res.render('Produktas.ejs', {
+                product: categoryItem,
+                category: category,
+                subcategory: subcategory
+            })
         })
-        
+
         /* Test */
         app.get('/traktoriai', (req, res) => {
             db.collection('tractors').find().toArray()
@@ -115,9 +143,22 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
                 .catch(error => console.error(error))
         })
 
+        app.post("/upload/photo", upload.single('myImage'), (req, res) => {
+            productCollection.insertOne({
+                SubCategoryID: req.body.SubCategoryID,
+                Name: req.body.Name,
+                Label: req.body.Label,
+                Description: req.body.Description,
+                Price: req.body.Price,
+                PhotoID: req.body.PhotoID})
+                .then(result => {
+                    res.redirect('/traktoriai')
+                })
+                .catch(error => console.error(error))
+        })
+
     })
     .catch(error => console.error(error))
-
 
 // Common Handlers
 app.get('/', (req, res, next) => {
