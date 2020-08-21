@@ -47,13 +47,18 @@
             <div id="message"></div>
             <br><br><br>
             <form action="/upload/photo" enctype="multipart/form-data" method="POST">
-                <input type="text" id="SubCategoryID" placeholder="SubCategoryID" value="" name="SubCategoryID" required>
+                <select id="SubCategoryID" name="SubCategoryID">
+                    <% for(var i = 0; i < subcategories.length; i++) { %>
+                        <option value="<%= subcategories[i]._id %>"><%= subcategories[i].CategoryLabel + ' - ' + subcategories[i].Label %></option>
+                    <% } %>
+                </select>
                 <input type="text" id="Name" placeholder="Name" value="" name="Name" required>
                 <input type="text" id="Label" placeholder="Label" value="" name="Label" required>
                 <input type="text" id="Description" placeholder="Description" value="" name="Description" required>
-                <input type="text" id="Price" placeholder="Price" value="" name="Price" required>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="Price" placeholder="Price" value="" name="Price" required>
+                <br>
                 <input type="hidden" id="PhotoID" value="<%= Date.now() %>" name="PhotoID">
-                <input type="file" id="myImage" name="myImage" value="" required>
+                <input type="file" id="myImage" name="myImage" value="">
                 <input type="submit" value="Upload product"/>
             </form>
 
@@ -64,6 +69,6 @@
 
 
 <!--////////////////////////////////////////////////////////////////-->
-<%- include('Footer.ejs')%>
+<%- include('Footer.ejs') %>
 </body>
 </html>

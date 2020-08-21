@@ -23,7 +23,7 @@
                 <div class="col-lg-3 col-6 text-center">
                     <a class="select" href="parduotuve/<%= Category[i].Name %>">
                         <div class="box category">
-                            <img src="/assets/images/test.jpg" alt="dummyimage" width="120" height="120">
+                            <img src="<%='/assets/images/' + Category[i].PhotoID%>" onerror="this.onerror=null; this.src='https://via.placeholder.com/300'" alt="mainimage" width="120" height="120">
                             <div class="box-title">
                                 <h5><%= Category[i].Label %></h5>
                             </div>

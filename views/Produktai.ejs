@@ -28,7 +28,7 @@
                 <div class="col-lg-3 col-6 text-center">
                     <a class="select" href="<%= subcategory.Name %>/<%= products[i].Name %>">
                         <div class="box product">
-                            <img src="https://via.placeholder.com/300" alt="dummyimage" width="120" height="120">
+                            <img src="<%='/assets/images/' + products[i].PhotoID%>" onerror="this.onerror=null; this.src='https://via.placeholder.com/300'" alt="mainimage" width="120" height="120">
                             <div class="box-title">
                                 <h5><%= products[i].Label %></h5>
                             </div>

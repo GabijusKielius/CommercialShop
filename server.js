@@ -86,12 +86,14 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
         })
 
         /* Test */
-        app.get('/traktoriai', (req, res) => {
-            db.collection('tractors').find().toArray()
-                .then(results => {
-                    res.render('tractors.ejs', {tractors: results})
-                })
-                .catch(error => console.error(error))
+        app.get('/traktoriai', async (req, res) => {
+            const subcategory = await db.collection('Subcategory').find().toArray()
+            const tractors = await db.collection('tractors').find().toArray()
+            res.render('tractors.ejs', {
+                tractors: tractors,
+                subcategories: subcategory
+            })
+
         })
 
         app.post('/tractors', (req, res) => {
@@ -144,13 +146,19 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
         })
 
         app.post("/upload/photo", upload.single('myImage'), (req, res) => {
+            if(req.file != undefined) {
+                var filename = req.file.filename
+            }
+            else {
+                var filename = 'none'
+            }
             productCollection.insertOne({
                 SubCategoryID: req.body.SubCategoryID,
-                Name: req.body.Name,
+                Name: req.body.Name + '-' + req.body.PhotoID,
                 Label: req.body.Label,
                 Description: req.body.Description,
                 Price: req.body.Price,
-                PhotoID: req.body.PhotoID})
+                PhotoID: filename})
                 .then(result => {
                     res.redirect('/traktoriai')
                 })
