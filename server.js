@@ -76,10 +76,10 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
 
             const category = await db.collection('Category').findOne({Name: req.params.categoryName})
             const subcategory = await db.collection('Subcategory').findOne({Name: req.params.subCategoryName})
-            const categoryItem = await db.collection('Product').findOne({Name: req.params.productName})
+            const product = await db.collection('Product').findOne({Name: req.params.productName})
 
             res.render('Produktas.ejs', {
-                product: categoryItem,
+                product: product,
                 category: category,
                 subcategory: subcategory
             })
@@ -87,11 +87,16 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
 
         /* Test */
         app.get('/traktoriai', async (req, res) => {
+            const category = await db.collection('Category').find().toArray()
             const subcategory = await db.collection('Subcategory').find().toArray()
+            const product = await db.collection('Product').find().toArray()
             const tractors = await db.collection('tractors').find().toArray()
+
             res.render('tractors.ejs', {
                 tractors: tractors,
-                subcategories: subcategory
+                categories: category,
+                subcategories: subcategory,
+                products: product
             })
 
         })
@@ -145,7 +150,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
                 .catch(error => console.error(error))
         })
 
-        app.post("/upload/photo", upload.single('myImage'), (req, res) => {
+        app.post("/uploadproduct", upload.single('myImage'), (req, res) => {
             if(req.file != undefined) {
                 var filename = req.file.filename
             }
@@ -154,10 +159,48 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
             }
             productCollection.insertOne({
                 SubCategoryID: req.body.SubCategoryID,
-                Name: req.body.Name + '-' + req.body.PhotoID,
+                Name: req.body.Label.toLowerCase() + '-' + Math.floor(Math.random() * (10000 - 1000 + 1) ),
                 Label: req.body.Label,
                 Description: req.body.Description,
                 Price: req.body.Price,
+                PhotoID: filename})
+                .then(result => {
+                    res.redirect('/traktoriai')
+                })
+                .catch(error => console.error(error))
+        })
+
+        app.post("/uploadsubcategory", upload.single('myImage'), (req, res) => {
+            const subcategoryCollection = db.collection('Subcategory')
+            if(req.file != undefined) {
+                var filename = req.file.filename
+            }
+            else {
+                var filename = 'none'
+            }
+            subcategoryCollection.insertOne({
+                CategoryID: req.body.CategoryID,
+                CategoryLabel: req.body.CategoryLabel,
+                Name: req.body.Label.toLowerCase() + '-' + Math.floor(Math.random() * (10000 - 1000 + 1) ),
+                Label: req.body.Label,
+                PhotoID: filename})
+                .then(result => {
+                    res.redirect('/traktoriai')
+                })
+                .catch(error => console.error(error))
+        })
+
+        app.post("/uploadcategory", upload.single('myImage'), (req, res) => {
+            const categoryCollection = db.collection('Category')
+            if(req.file != undefined) {
+                var filename = req.file.filename
+            }
+            else {
+                var filename = 'none'
+            }
+            categoryCollection.insertOne({
+                Name: req.body.Label.toLowerCase() + '-' + Math.floor(Math.random() * (10000 - 1000 + 1) ),
+                Label: req.body.Label,
                 PhotoID: filename})
                 .then(result => {
                     res.redirect('/traktoriai')

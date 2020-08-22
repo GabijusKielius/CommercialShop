@@ -26,7 +26,7 @@
 
                 <% for(var i = 0; i < tractors.length; i++) { %>
                     <li class="tractor">
-                        <span><%= tractors[i].model %></span>:
+                        <span><%= tractors[i].model %>: </span>
                         <span><%= tractors[i].type %></span>
                     </li>
                 <% } %>
@@ -46,21 +46,70 @@
 
             <div id="message"></div>
             <br><br><br>
-            <form action="/upload/photo" enctype="multipart/form-data" method="POST">
+            <h3>PRODUCT UPLOAD</h3>
+            <form action="/uploadproduct" enctype="multipart/form-data" method="POST">
                 <select id="SubCategoryID" name="SubCategoryID">
                     <% for(var i = 0; i < subcategories.length; i++) { %>
                         <option value="<%= subcategories[i]._id %>"><%= subcategories[i].CategoryLabel + ' - ' + subcategories[i].Label %></option>
                     <% } %>
                 </select>
-                <input type="text" id="Name" placeholder="Name" value="" name="Name" required>
-                <input type="text" id="Label" placeholder="Label" value="" name="Label" required>
-                <input type="text" id="Description" placeholder="Description" value="" name="Description" required>
-                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="Price" placeholder="Price" value="" name="Price" required>
+                <input type="text"
+                       oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Label" placeholder="Label" value="" name="Label" maxlength="16" required>
+                <input type="text"
+                       oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Description" placeholder="Description" value="" name="Description" maxlength="32" required>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Price" placeholder="Price" value="" name="Price" required>
                 <br>
                 <input type="hidden" id="PhotoID" value="<%= Date.now() %>" name="PhotoID">
                 <input type="file" id="myImage" name="myImage" value="">
                 <input type="submit" value="Upload product"/>
             </form>
+            <br><br><br>
+            <h3>SUBCATEGORY UPLOAD</h3>
+            <form action="/uploadsubcategory" enctype="multipart/form-data" method="POST">
+                <select id="CategoryID" name="CategoryID">
+                    <% for(var i = 0; i < categories.length; i++) { %>
+                        <option onclick="document.getElementById('CategoryName').value = '<%= categories[i].Label %>'"
+                                value="<%= categories[i]._id %>"><%= categories[i].Label %></option>
+                    <% } %>
+                </select>
+                <input type="hidden" id="CategoryLabel" value="<%= categories[0].Label %>" name="CategoryLabel">
+                <input type="text"
+                       oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Label" placeholder="Label" value="" name="Label" maxlength="16" required>
+                <br>
+                <input type="hidden" id="PhotoID" value="<%= Date.now() %>" name="PhotoID">
+                <input type="file" id="myImage" name="myImage" value="">
+                <input type="submit" value="Upload subcategory"/>
+            </form>
+            <br><br><br>
+            <h3>CATEGORY UPLOAD</h3>
+            <form action="/uploadcategory" enctype="multipart/form-data" method="POST">
+                <input type="text"
+                       oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Label" placeholder="Label" value="" name="Label" maxlength="16" required>
+                <br>
+                <input type="hidden" id="PhotoID" value="<%= Date.now() %>" name="PhotoID">
+                <input type="file" id="myImage" name="myImage" value="">
+                <input type="submit" value="Upload category"/>
+            </form>
+            <br><br><br>
+
+            <% for(var i = 0; i < products.length; i++)  { %>
+                <ul>
+                    <li>
+                        <span><%= products[i]._id %></span>
+                        <span><%= products[i].SubCategoryID %></span>
+                        <span><%= products[i].Name %></span>
+                        <span><%= products[i].Label %></span>
+                        <span><%= products[i].Description %></span>
+                        <span><%= products[i].Price %></span>
+                        <button>Redaguoti</button>
+                    </li>
+                </ul>
+            <% } %>
 
             <hr>
         </div>
