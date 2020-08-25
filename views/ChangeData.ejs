@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabijus Test</title>
+    <%- include('Scripts.ejs') %>
+</head>
+<body>
+<!--////////////////////////////////////////////////////////////////-->
+
+<%- include('RemgetaMenu.ejs') %>
+
+<div class="container linija">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="page-title">AdminPage-Database-Test</span>
+
+            <h3>PRODUCT CHANGE</h3>
+            <select id="CategoryID" name="CategoryID">
+                <% for(var i = 0; i < categories.length; i++) { %>
+                    <option onclick="document.getElementById('CategoryName').value = '<%= categories[i].Label %>'"
+                            value="<%= categories[i]._id %>"><%= categories[i].Label %></option>
+                <% } %>
+                <form action="/uploadsubcategory" enctype="multipart/form-data" method="POST">
+                    <input type="text"
+                           oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                           id="Label" placeholder="Label" value="" name="Label" maxlength="16" required>
+                    <input type="text"
+                           oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                           id="Description" placeholder="Description" value="" name="Description" maxlength="32" required>
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                           id="Price" placeholder="Price" value="" name="Price" required>
+                    <br>
+                    <input type="hidden" id="PhotoID" value="<%= Date.now() %>" name="PhotoID">
+                    <input type="file" id="myImage" name="myImage" value="">
+                    <input type="submit" value="Upload product"/>
+                </form>
+            </select>
+
+
+            <button onclick="window.location.href='/adminpage'">Go back</button>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+<!--////////////////////////////////////////////////////////////////-->
+<%- include('Footer.ejs') %>
+</body>
+</html>

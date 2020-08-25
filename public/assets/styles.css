@@ -255,7 +255,7 @@ h3{
     white-space:nowrap;
     text-overflow: ellipsis;
 }
-.menuTitle a{
+.menuTitle a, .menuTitle a:hover{
     color: #3399cc;
 }
 .productInfo {

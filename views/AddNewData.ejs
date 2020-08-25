@@ -13,39 +13,8 @@
 <div class="container linija">
     <div class="row">
         <div class="col-md-12">
-            <span class="page-title">Traktoriai-Database-Test</span>
-            <form action="/tractors" method="POST">
-                <input type="text" placeholder="model" name="model">
-                <input type="text" placeholder="type" name="type">
-                <button type="submit">Submit</button>
-            </form>
+            <span class="page-title">AdminPage-Database-Test</span>
 
-            <h2> Tractors </h2>
-
-            <ul class="tractors">
-
-                <% for(var i = 0; i < tractors.length; i++) { %>
-                    <li class="tractor">
-                        <span><%= tractors[i].model %>: </span>
-                        <span><%= tractors[i].type %></span>
-                    </li>
-                <% } %>
-            </ul>
-
-            <div>
-                <h2> Change Tractor </h2>
-                <p> Replacing tractors model</p>
-                <button id="update-button">Replace Model</button>
-            </div>
-
-            <div>
-                <h2> Remove Tractor </h2>
-                <p> Removing tractors model</p>
-                <button id="delete-button">Delete Model</button>
-            </div>
-
-            <div id="message"></div>
-            <br><br><br>
             <h3>PRODUCT UPLOAD</h3>
             <form action="/uploadproduct" enctype="multipart/form-data" method="POST">
                 <select id="SubCategoryID" name="SubCategoryID">
@@ -95,22 +64,8 @@
                 <input type="file" id="myImage" name="myImage" value="">
                 <input type="submit" value="Upload category"/>
             </form>
-            <br><br><br>
 
-            <% for(var i = 0; i < products.length; i++)  { %>
-                <ul>
-                    <li>
-                        <span><%= products[i]._id %></span>
-                        <span><%= products[i].SubCategoryID %></span>
-                        <span><%= products[i].Name %></span>
-                        <span><%= products[i].Label %></span>
-                        <span><%= products[i].Description %></span>
-                        <span><%= products[i].Price %></span>
-                        <button>Redaguoti</button>
-                    </li>
-                </ul>
-            <% } %>
-
+            <button onclick="window.location.href='/adminpage'">Go back</button>
             <hr>
         </div>
     </div>

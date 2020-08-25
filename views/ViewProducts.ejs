@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabijus Test</title>
+    <%- include('Scripts.ejs') %>
+</head>
+<body>
+<!--////////////////////////////////////////////////////////////////-->
+
+<%- include('RemgetaMenu.ejs') %>
+
+<div class="container linija">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="page-title">AdminPage-Database-Test</span>
+
+            <h3>PRODUCT CHANGE</h3>
+            <ul>
+                <% for(var i = 0; i < products.length; i++) { %>
+                    <li>
+                        <span style="display:inline-block;width:144px"><%= products[i].Label %></span>
+                        <span style="display:inline-block;width:272px"><%= products[i].Description %></span>
+                        <span style="display:inline-block;width:128px"><%= products[i].Price %></span>
+                        <button onclick="window.location.href='/adminpage/changedata/<%= products[i]._id%>'">Testas</button>
+                    </li>
+                <% } %>
+            </ul>
+
+            <button onclick="window.location.href='/adminpage'">Go back</button>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+<!--////////////////////////////////////////////////////////////////-->
+<%- include('Footer.ejs') %>
+</body>
+</html>

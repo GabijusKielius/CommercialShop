@@ -2,11 +2,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const connectionString = 'mongodb+srv://GabiDB:es96301p@cluster0-gdqej.mongodb.net/Remgeta-DB?retryWrites=true&w=majority'
+const mongo = require('mongodb')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 const multer = require('multer')
-const path = require('path');
-const fs = require('fs');
+const path = require('path')
+const fs = require('fs')
 
 // Multer stuff
 var storage = multer.diskStorage({
@@ -85,26 +86,57 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
             })
         })
 
-        /* Test */
-        app.get('/traktoriai', async (req, res) => {
+        app.get('/adminpage', async (req, res) => {
             const category = await db.collection('Category').find().toArray()
             const subcategory = await db.collection('Subcategory').find().toArray()
             const product = await db.collection('Product').find().toArray()
             const tractors = await db.collection('tractors').find().toArray()
 
-            res.render('tractors.ejs', {
+            res.render('Adminpage.ejs', {
                 tractors: tractors,
                 categories: category,
                 subcategories: subcategory,
                 products: product
             })
-
+        })
+        app.get('/adminpage/addnewdata', async (req, res) => {
+            const category = await db.collection('Category').find().toArray()
+            const subcategory = await db.collection('Subcategory').find().toArray()
+            const product = await db.collection('Product').find().toArray()
+            res.render('AddNewData.ejs', {
+                categories: category,
+                subcategories: subcategory,
+                products: product
+            })
+        })
+        app.get('/adminpage/changedata', async (req, res) => {
+            const category = await db.collection('Category').find().toArray()
+            const subcategory = await db.collection('Subcategory').find().toArray()
+            const product = await db.collection('Product').find().toArray()
+            res.render('ChangeData.ejs', {
+                categories: category,
+                subcategories: subcategory,
+                products: product
+            })
+        })
+        app.get('/adminpage/changedata/:productid', async (req, res) => {
+            const o_id = new mongo.ObjectID(req.params.productid)
+            const product = await db.collection('Product').findOne({'_id': o_id})
+            res.render('ChangeProduct.ejs', {
+                product: product
+            })
+        })
+        app.get('/adminpage/viewproducts', async (req, res) => {
+            const product = await db.collection('Product').find().toArray()
+            res.render('ViewProducts.ejs', {
+                products: product
+            })
         })
 
         app.post('/tractors', (req, res) => {
             tractorCollection.insertOne(req.body)
                 .then(result => {
-                    res.redirect('/traktoriai')
+                    res.redirect('/addnewdata')
                 })
                 .catch(error => console.error(error))
         })
@@ -165,7 +197,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
                 Price: req.body.Price,
                 PhotoID: filename})
                 .then(result => {
-                    res.redirect('/traktoriai')
+                    res.redirect('/addnewdata')
                 })
                 .catch(error => console.error(error))
         })
@@ -185,7 +217,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser
                 Label: req.body.Label,
                 PhotoID: filename})
                 .then(result => {
-                    res.redirect('/traktoriai')
+                    res.redirect('/addnewdata')
                 })
                 .catch(error => console.error(error))
         })

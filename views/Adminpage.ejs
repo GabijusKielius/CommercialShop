@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabijus Test</title>
+    <%- include('Scripts.ejs') %>
+</head>
+<body>
+<!--////////////////////////////////////////////////////////////////-->
+
+<%- include('RemgetaMenu.ejs') %>
+
+<div class="container linija">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="page-title">AdminPage-Database-Test</span>
+            <form action="/tractors" method="POST">
+                <input type="text" placeholder="model" name="model">
+                <input type="text" placeholder="type" name="type">
+                <button type="submit">Submit</button>
+            </form>
+
+            <h2> Tractors </h2>
+
+            <ul class="tractors">
+
+                <% for(var i = 0; i < tractors.length; i++) { %>
+                    <li class="tractor">
+                        <span><%= tractors[i].model %>: </span>
+                        <span><%= tractors[i].type %></span>
+                    </li>
+                <% } %>
+            </ul>
+
+            <div>
+                <h2> Change Tractor </h2>
+                <p> Replacing tractors model</p>
+                <button id="update-button">Replace Model</button>
+            </div>
+
+            <div>
+                <h2> Remove Tractor </h2>
+                <p> Removing tractors model</p>
+                <button id="delete-button">Delete Model</button>
+            </div>
+
+            <div id="message"></div>
+            <br><br><br>
+            <button onclick="window.location.href='adminpage/viewproducts'">View Products</button>
+            <br><br><br>
+            <button onclick="window.location.href='adminpage/addnewdata'">Add New Data</button>
+            <br><br><br>
+            <button onclick="window.location.href='adminpage/changedata'">Change Data</button>
+
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+<!--////////////////////////////////////////////////////////////////-->
+<%- include('Footer.ejs') %>
+</body>
+</html>

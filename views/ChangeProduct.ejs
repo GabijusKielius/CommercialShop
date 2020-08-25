@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabijus Test</title>
+    <%- include('Scripts.ejs') %>
+</head>
+<body>
+<!--////////////////////////////////////////////////////////////////-->
+
+<%- include('RemgetaMenu.ejs') %>
+
+<div class="container linija">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="page-title">AdminPage-Database-Test</span>
+
+            <h3>PRODUCT CHANGE</h3>
+            <form action="/changeproduct" enctype="multipart/form-data" method="PUT">
+                <input type="text" value="<%= product._id %>" disabled="true">
+                <input type="text"
+                       oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Label" placeholder="Label" value="<%= product.Label %>" name="Label" maxlength="16" required>
+                <input type="text"
+                       oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Description" placeholder="Description" value="<%= product.Description %>" name="Description"
+                       maxlength="32" required>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="Price" placeholder="Price" value="<%= product.Price %>" name="Price" required>
+                <br>
+                <input type="submit" value="Upload product"/>
+            </form>
+
+            <button onclick="window.location.href='/adminpage'">Go back</button>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+<!--////////////////////////////////////////////////////////////////-->
+<%- include('Footer.ejs') %>
+</body>
+</html>
